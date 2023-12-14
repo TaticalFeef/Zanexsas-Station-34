@@ -1,0 +1,16 @@
+
+*.dmb
+*.lk
+*.rsc
+
+*.int
+*.log
+
+data/logs
+data/dabcoins
+data/player_saves
+SavedPlayerResolutions/
+config/webhook.txt
+config/webhookAdmin.txt
+sound/playervoices/*.wav
+config/webhookAnnounce\.txt
