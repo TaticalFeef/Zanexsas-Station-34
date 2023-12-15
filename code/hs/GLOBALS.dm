@@ -18,3 +18,10 @@ var/list/titleSongs = list(	//Pra colocar uma musica no lobby e so colocar o num
     'karako.ogg',
     'marvus.ogg',
 )
+
+proc/notifyAction(var/mob/_usr, var/mob/target, var/actionMsg, var/soundPath)
+	for(var/mob/M in hearers(world.view, _usr))
+		if(M.client)
+			if(M != _usr)
+				M << "\red [usr.name] [actionMsg] [target.name]!"
+				M << sound(soundPath)

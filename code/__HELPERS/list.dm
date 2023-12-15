@@ -534,3 +534,12 @@ datum/proc/dd_SortValue()
 
 /obj/machinery/dd_SortValue()
 	return "[sanitize(name)]"
+
+//explode or implooooooooooooooooooooooooooooooooooooode
+/proc/implode(list/input_list, delimiter = "")
+	var/str = ""
+	for(var/i in input_list)
+		str += "[i]"
+		if(i != input_list[input_list.len])
+			str += delimiter
+	return str

@@ -26,22 +26,21 @@ var/special_processing = list()
 #define CPU_CHECK_MAX 40 //if cpu goes higher than this, some things will do sleep(tick_lag_original) and throttle.
 #define ATMOS_CPU_FORCE_SLEEP 70 //Force atmos/water to sleep (and throttle) if CPU goes higher than this value to stabilize the CPU.
 
-client
-	New()
-		..()
-		clients += src
-	Del()
-		clients -= src
-		if(src in admin_clients)
-			admin_clients -= src
-		..()
+client/New()
+	..()
+	clients += src
+
+client/Del()
+	clients -= src
+	if(src in admin_clients)
+		admin_clients -= src
+	..()
 
 
 var/plrs = 1
 
-obj
-	proc/special_process() //special_processing
-		return
+obj/proc/special_process() //special_processing
+	return
 
 var/list/rand_spawns = list()
 
@@ -81,10 +80,13 @@ proc/CHECK_TICK_ATMOS() //epic optimizer (ATMOS EDITION)
 		sleep(tick_lag_original)
 		actions_per_tick_atmos = 0
 
-proc/CHECK_TICK() //epic optimizer
+proc/CHECK_TICK()
 	master_Processed += 1
 	actions_per_tick += 1
-	if(actions_per_tick > max_actions - ((max(0,min(world.cpu,100))/100)*(max_actions/2)*(CPU_warning)))
+	var/cpu_usage_factor = max(0, min(world.cpu, 100)) / 100
+	var/action_threshold = max_actions - (cpu_usage_factor * (max_actions / 2) * CPU_warning)
+
+	if(actions_per_tick > action_threshold)
 		sleep(tick_lag_original)
 		actions_per_tick = 0
 
@@ -95,7 +97,6 @@ datum/controller/game_controller
 	var/process_objects_done = 0
 	var/T = 0
 	proc
-		setup()
 		setup_objects()
 		process()
 		fast_process()
@@ -117,58 +118,67 @@ datum/controller/game_controller
 							call("ByondPOST.dll", "send_post_request")("[WebhookURL]", " { \"content\" : \"**Game server is having high stress, CPU too high (%[world.cpu] > [CPU_WARN]), will attempt to throttle actions.**\" } ", "Content-Type: application/json")
 					world << "<font color='red'><b><font size=5>Server CPU is (%[world.cpu] > [CPU_WARN]), Will attempt to throttle MC to lower CPU."
 					CPU_warning = 1
-	setup() //this takes way too long
-		if(master_controller && (master_controller != src))
-			del(src)
+datum/controller/game_controller/proc/setup()
+	var/RLstart_time = world.timeofday
 
-		if(!air_master)
-			air_master = new /datum/controller/air_system()
-			air_master.setup()
-		if(!water_master)
-			water_master = new /datum/controller/water_system()
+	if(master_controller && (master_controller != src))
+		del(src)
+		return
 
-		setup_objects()
+	if(!air_master)
+		air_master = new /datum/controller/air_system()
+		air_master.setup()
+	if(!water_master)
+		water_master = new /datum/controller/water_system()
 
-		setupgenetics()
+	setup_objects()
+	setupgenetics()
 
-		var/RLstart_time = world.timeofday
-		var/start_time = world.timeofday
+	var/start_time = world.timeofday
+	lighting.init()
+	lighting_inited = 1
+	for(var/obj/machinery/light/l in world)
+		l.update()
+	world << "lighting system : [start_time]"
 
-		world << "\red \b Initializing lighting"
-		lighting.init()
-		lighting_inited = 1
-		for(var/obj/machinery/light/l in world)
-			l.update()
-		world << "\green \b Initialized lighting system in [world.timeofday-start_time/10] seconds!"
+	emergency_shuttle ||= new /datum/shuttle_controller/emergency_shuttle()
 
-		emergency_shuttle = new /datum/shuttle_controller/emergency_shuttle()
+	ticker ||= new /datum/controller/gameticker()
+	spawn ticker.pregame()
+	initialize_special_objects()
+	create_sandbox_spawn_list()
+	var/total_init_time = (world.timeofday - RLstart_time) / 10
+	world << "Total initializations complete in [total_init_time] seconds!"
 
-		if(!ticker)
-			ticker = new /datum/controller/gameticker()
+datum/controller/game_controller/proc/log_initialization(section, start_time)
+	var/time_taken = (world.timeofday - start_time) / 10
+	world << "Initialized [section] in [time_taken] seconds!"
 
-		spawn
-			ticker.pregame()
-		start_time = world.timeofday
-		world << "Initializing Special objects"
-		for(var/obj/water/tank/i in world)
-			i.on = 1
-		for(var/obj/window_spawner/G in world)
-			G.Initialize_Window()
-		for(var/obj/machinery/sleeper/spawner/e in world)
-			rand_spawns += e
-		world << "\green \b Initialized special objects in [world.timeofday-start_time/10] seconds!"
+datum/controller/game_controller/proc/initialize_special_objects()
+	var/start_time = world.timeofday
+	for(var/obj/water/tank/i in world)
+		i.on = 1
+	for(var/obj/window_spawner/G in world)
+		G.Initialize_Window()
+	for(var/obj/machinery/sleeper/spawner/e in world)
+		rand_spawns += e
+	log_initialization("special objects,",start_time)
 
-		start_time = world.timeofday
-		world << "\red \b Creating sandbox spawn list."
-		for(var/i in typesof(/obj/item)-/obj/item)
-			listofitems = "[listofitems]<br><a href=?[i]>[i]</a>"
-		for(var/i in typesof(/obj)+typesof(/mob))
-			listofitems2 = "[listofitems2]<br><a href=?[i]>[i]</a>"
-			typepaths += i
-		world << "\green \b Created sandbox spawn list in [world.timeofday-start_time/10] seconds!"
+datum/controller/game_controller/proc/create_sandbox_spawn_list()
+	var/start_time = world.timeofday
+	var/list/item_list = list()
+	var/list/item_list2 = list()
+	for(var/i in typesof(/obj/item) - /obj/item)
+		item_list += "<br><a href=?[i]>[i]</a>"
+	for(var/i in typesof(/obj) + typesof(/mob))
+		item_list2 += "<br><a href=?[i]>[i]</a>"
+	listofitems = implode(item_list, "")
+	listofitems2 = implode(item_list2, "")
+	typepaths += item_list2
+	var/time_taken = (world.timeofday - start_time) / 10
+	world << "Created sandbox spawn list in [time_taken] seconds!"
 
-		world << "\green \b Initializations complete in [world.timeofday-RLstart_time/10] seconds!"
-
+datum/controller/game_controller/
 	start_processing()
 		spawn()
 			slow_process()
