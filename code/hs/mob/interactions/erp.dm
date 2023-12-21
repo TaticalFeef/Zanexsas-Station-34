@@ -1,85 +1,104 @@
-#define MAX_PLEASURE 100
-// Puta que pariu
-mob/var
-	partner
-	potenzia
-	pleasure
-	tired = 0
-	penisSize = 0
+#define MAX_BUCKET_METER 100
+#define REST_PERIOD 500
 
-mob/New()
+mob/living/carbon/human/var/mob/living/carbon/human/partner
+mob/living/carbon/human/var/potenzia
+mob/living/carbon/human/var/bucketMeter
+mob/living/carbon/human/var/tired = 0
+mob/living/carbon/human/var/tentaclePower = 0
+mob/living/carbon/human/var/consent = FALSE
+mob/living/carbon/human/var/datum/tentacleType/tentacle
+
+/mob/living/carbon/human/New()
 	..()
-	if(src.gender == "Male")
-		penisSize = rand(5,40)
+	if(src.gender == "male") // male.....
+	//fiquei 3 horas tentando arrumas isso aqui
+	//o problema era que tava checando pra "Male"
+	//um M maiuscokhtypjjjfk
+		tentaclePower = rand(5, 40)
+		assignRandomTentacleType()
 
-/obj/cleanable/cum
-	name = "Semen"
-	desc = "Cream pie ......... delicious"
-	icon = 'interact.dmi'
-	icon_state = "cum1"
+/mob/living/carbon/human/proc/assignRandomTentacleType()
+	var/list/tentacle_types = typesof(/datum/tentacleType) - /datum/tentacleType
+	var/type = pick(tentacle_types)
+	var/datum/tentacleType/t = new type()
+	tentacle = t
 
-	New()
-		..()
-		icon_state = pick("cum1","cum2","cum3","cum4","cum5","cum6","cum7","cum8","cum9","cum10","cum11","cum12")
+/mob/living/carbon/human/MouseDrop_T(mob/living/carbon/human/M as mob, mob/user as mob)
+	if(!istype(M, /mob/living/carbon/human)) return
+	if(user != M) return
+	if(M == src) return
+	if(get_dist(M, src) > 1) return
+	if(istype(M, /mob/living/silicon/ai)) return
+	if(LinkBlocked(M.loc, src.loc)) return
 
-	Click()
-		set src in oview(1)
-		view() << "<font color=blue>[usr] cleans up the [src.name]</font>"
-		del(src)
+	src.requestConsent(user)
 
-/mob/living/MouseDrop_T(mob/M as mob, mob/user as mob)
-	if(M == src || src == usr || M != usr)		return
+/mob/living/carbon/human/proc/requestConsent(var/mob/living/carbon/human/R)
+	//R = Requester
+	var/choice = alert(partner, "[R] wants to perform a tentacle interaction. Do you consent?", "Consent Request", "Yes", "No")
+	if(choice == "Yes")
+		R.partner = src
+		src.partner = R
+		R.consent = TRUE
+		src.consent = TRUE
+		R.performInteraction()
 
-	var/mob/living/H = usr
-	H.partner = src
-	usr << 	browse(null,"fuck")
-	fug()
+/mob/living/carbon/human/proc/performInteraction()
+	partner.fug()
 
-mob/proc/fuck()
-	if(usr.tired == 0 && usr.gender == "male")
-		usr.dir = get_dir(usr,usr.partner)
-		var/p = usr.partner
-		view() << "<font color=purple><b>[usr]</b> Bangs <b>[usr.partner]</b>'s ass</font>"
-		usr.do_fucking_animation(p)
-		usr.pleasure += 10
-		if(usr.penisSize >= 30)
-			view() << "<font color=red><b>[usr] SCREAMS!</b></font>"
-			view() << "<font color=purple><b>[usr]</b> Pounds <b>[usr.partner]</b>'s ass</font>"
-			if(istype(src,/mob/living/))
-				var/mob/living/w = p
-				w.TakeBruteDamage(usr.penisSize)
+/mob/living/carbon/human/proc/tentacly()
+	var/mob/living/carbon/human/p = src.partner
+	if(!p)
+		src << "Não possui parceiro!"
+		return
+	if(get_dist(p, src) > 1)
+		src << "Longe demais!"
+		return
+	if(src.tired == 0 && src.gender == "male" && src.consent && src.partner.consent)
+		src.dir = get_dir(src, src.partner)
+
+		view() << "<font color=purple><b>[src]</b> performs an action on <b>[p]</b></font>"
+		src.do_tentacly_animation(p)
+		src.bucketMeter += 10
 	else
-		usr << "<font color=blue>You are too tired to do that.</font>"
-	if(usr.pleasure >= 100)
-		discord_relay("**[usr] gozou em [usr.partner] :sweat_drops: **")
-		view() << "<big><font color=purple><b>[usr]</b> Cums!</font></big>"
-		usr.pleasure = 0
-		var/obj/cleanable/cum/C = new(usr.loc)
-		C.name = "Semen"
-		sleep(500)
-		usr.tired = 0
+		src << "<font color=blue>You are too tired or lacking consent to do that.</font>"
 
-mob/proc/fug()
-	var/erpHTML ={"
-	<Title> ERP </Title>
-	<Body style="background-color: #dfdfdf;">
+	if(src.bucketMeter >= MAX_BUCKET_METER)
+		view() << "<big><font color=purple><b>[src]</b> Splurges!</font></big>"
+		src.bucketMeter = 0
+		var/obj/cleanable/bucket_juice/C = new(src.loc)
+		C.name = "DNA Juice"
+		src.tentacle.applyEffect(src, src.partner, C)
+		sleep(REST_PERIOD)
+		src.tired = 0
+		src.consent = FALSE
+		src.partner.consent = FALSE
+		src.partner.partner = null
+		src.partner = null
+
+/mob/living/carbon/human/proc/fug()
+	var/trpHTML = {"
+	<Title>Interaction Options</Title>
+	<Body style='background-color: #dfdfdf;'>
 	<p>Select an action</p>
-	<a href='?src=\ref[src];action=sex' class="aButton">
-	Anal (10 . 15)
-	</a>
+	<a href='?src=\ref[src];action=bucket' class='aButton'>Tentacle Interaction (10 - 15)</a>
+	<a href='?src=\ref[src];action=other' class='aButton'>Other Interaction</a>
 	</Body>
 	"}
-	usr<<browse(erpHTML,"window=sex")
+	usr << browse(trpHTML, "window=tentacle")
 
-mob/Topic(href,href_list[])
+/mob/living/carbon/human/Topic(href,href_list[])
 	switch(href_list["action"])
 		if("startgame")
 			usr << "Starting game..."
-		if("sex")
-			usr.fuck()
+		if("bucket")
+			usr:tentacly()
+		if("other")
+			usr:gib()
 
 
-/mob/proc/do_fucking_animation(mob/living/P)
+/mob/living/carbon/human/proc/do_tentacly_animation(mob/living/P)
 	var/pixel_x_diff = 0
 	var/pixel_y_diff = 0
 	var/final_pixel_y = initial(pixel_y)
