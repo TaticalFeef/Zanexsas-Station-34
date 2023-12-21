@@ -22,24 +22,31 @@
 
 		ySpeed = 0
 		..()
-	Life()
-		if(world.time < l_delay)
-			return
-		if(!client)
-			while(recalling == TRUE && owner)
-				spawn(tick_lag_original)
-					spawn(1) src.Dash_Effect(src.loc)
-					density = 0
-					walk_towards(src,owner,0.5,0)
-					spawn(1)
-						if(get_dist(owner,src) <= 1)
-							recalling = FALSE
-							density = 1
-					spawn(tick_lag_original * 500) recalling = FALSE
-				sleep(tick_lag_original)
+/mob/living/carbon/bee/Life()
+	if(world.time < l_delay)
+		return
 
-			step_rand(src)
-			l_delay = world.time+rand(5,7)
+	if(!client && recalling == TRUE && owner)
+		density = 0
+		walk_towards(src, owner, 0.5, 0)
+		addtimer(CALLBACK(src, .proc/checkRecall), tick_lag_original * 100)
+	else if(!recalling)
+		step_rand(src)
+		l_delay = world.time + rand(5, 7)
 
-	proc/changeRecalling()
-		recalling = !recalling
+/mob/living/carbon/bee/proc/checkRecall()
+	if(get_dist(owner, src) <= 1)
+		density = 1
+		// mandar o gold nigga recolher a abelha
+		if(owner && recalling)
+			for(var/datum/alternians/gold/gold_datum in owner.contents)
+				gold_datum.removeBee(src)
+			recalling = FALSE
+	else
+		recalling = FALSE
+
+/mob/living/carbon/bee/Destroyed()
+	..()
+	new /obj/Particle/honeypot(src.loc)
+	src.loc = null
+	owner = null

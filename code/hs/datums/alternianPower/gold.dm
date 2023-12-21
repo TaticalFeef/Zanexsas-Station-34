@@ -54,9 +54,8 @@ datum/alternians/gold/proc/recallBees()
 	for(var/mob/living/carbon/bee/b in bees)
 		if(b.owner == owner)
 			new /obj/Particle/honeypot(b.loc)
-			max_bees++
-			bees -= b
-			del b
+			b.recalling = TRUE
+	//checkBees()
 
 datum/alternians/gold/proc/checkBees()
 	if(checking || bees.len <= 0)
@@ -69,12 +68,15 @@ datum/alternians/gold/proc/checkBees()
 		for(var/mob/living/carbon/bee/b in bees)
 			if(b.owner != owner || !b)
 				bees -= b
-				max_bees++
-				if(b) del b
+				if(b) zDel(b)
 	checking = FALSE
 	timer.Reset()
 	timer.Stop()
 
+datum/alternians/gold/proc/removeBee(mob/living/carbon/bee/bee)
+	if(bee in bees)
+		bees -= bee
+		zDel(bee)
 
 /obj/machinery/power/goldEnergy/
 	icon = 'icons/hs/hs_structures.dmi'
