@@ -98,7 +98,7 @@
 				O << "\red <B>[my_target] stumbles around.</B>"
 
 /obj/fake_attacker/New()
-	spawn(300) del(src)
+	spawn(300) zDel(src)
 	step_away(src,my_target,2)
 	proccess()
 

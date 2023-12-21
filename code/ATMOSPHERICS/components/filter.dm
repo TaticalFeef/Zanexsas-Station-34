@@ -180,15 +180,15 @@ Filter types:
 
 		if(node_out1)
 			node_out1.disconnect(src)
-			del(network_out1)
+			zDel(network_out1)
 
 		if(node_out2)
 			node_out2.disconnect(src)
-			del(network_out2)
+			zDel(network_out2)
 
 		if(node_in)
 			node_in.disconnect(src)
-			del(network_in)
+			zDel(network_in)
 
 		node_out1 = null
 		node_out2 = null
@@ -282,15 +282,15 @@ Filter types:
 
 	disconnect(obj/machinery/atmospherics/reference)
 		if(reference==node_out1)
-			del(network_out1)
+			zDel(network_out1)
 			node_out1 = null
 
 		else if(reference==node_out2)
-			del(network_out2)
+			zDel(network_out2)
 			node_out2 = null
 
 		else if(reference==node_in)
-			del(network_in)
+			zDel(network_in)
 			node_in = null
 
 		return null

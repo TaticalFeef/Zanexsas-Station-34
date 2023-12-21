@@ -19,7 +19,7 @@
 				if(joined_late)
 					src << "<b>\green Now spectating. Move around!"
 					src.ghostize()
-					del(src)
+					zDel(src)
 				else
 					//Spawn_Fortain(rank, joined_late)
 					Spawn_Normal(rank, joined_late)

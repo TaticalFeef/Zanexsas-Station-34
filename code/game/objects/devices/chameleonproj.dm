@@ -65,7 +65,7 @@
 			var/obj/overlay/T = new/obj/overlay(get_turf(src))
 			T.icon = 'effects.dmi'
 			flick("emppulse",T)
-			spawn(8) del(T)
+			spawn(8) zDel(T)
 		else
 			playsound(src, 'pop.ogg', 100, 1, 1)
 			var/obj/O = new saved_item (src)
@@ -84,7 +84,7 @@
 			var/obj/overlay/T = new/obj/overlay(get_turf(src))
 			T.icon = 'effects.dmi'
 			flick("emppulse",T)
-			spawn(8) del(T)
+			spawn(8) zDel(T)
 
 	proc/disrupt()
 		if(active_dummy)

@@ -17,4 +17,4 @@ mob
 			d1.dir = src.dir
 			d1.loc = location
 			d1.alpha=100
-			spawn(7) del(d1)
+			spawn(7) zDel(d1)

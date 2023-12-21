@@ -114,13 +114,13 @@ mob
 		#endif
 		ghostize(1)
 		if(danc)
-			del danc
+			zDel(danc)
 		if(src in HeightMobs)
 			HeightMobs -= src
 		if(src in Mobs)
 			Mobs -= src
 		if(MyShadow)
-			del MyShadow
+			zDel(MyShadow)
 		..()
 
 	#if defined(GRAVDEBUG)
@@ -208,7 +208,7 @@ mob
 				if(heightZ < 0 && heightZ > -8)
 					if(ySpeed < -3)
 						playsound(LAT, 'bang.ogg', 100, 0, 5, 0)
-						del LAT
+						zDel(LAT)
 					else
 						onFloor = 1
 						ySpeed = 0
@@ -231,7 +231,7 @@ mob
 		if(heightZ < -415 && !istype(src,/mob/dead))
 			src << "<b><font color='red'>You were never seen again.."
 			death(2)
-			del src
+			zDel(src)
 		else
 			if(heightZ < 0 && istype(src,/mob/dead))
 				heightZ = 0

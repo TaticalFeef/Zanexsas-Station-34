@@ -25,6 +25,6 @@ datum
 				var/obj/structure/hs/rococo/giant/chaos/c = new(usr.loc)
 				zDel(c)
 			else
-				usr << "não kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+				usr << "nï¿½o kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
 				//usr.verbs-=typesof(/datum/alternians/verb/)
 				usr.verbs-=/datum/alternians/verb/qdel_teste

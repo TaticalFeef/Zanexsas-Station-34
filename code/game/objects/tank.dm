@@ -348,7 +348,7 @@
 		ground_zero.assume_air(air_contents)
 		ground_zero.hotspot_expose(1000, 125)
 
-	if(src.master) del(src.master)
+	if(src.master) zDel(src.master)
 	del(src)
 
 /obj/item/weapon/tank/plasma/attackby(obj/item/weapon/W as obj, mob/user as mob)

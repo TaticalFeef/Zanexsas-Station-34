@@ -70,7 +70,7 @@
 
 		if(node)
 			node.disconnect(src)
-			del(network)
+			zDel(network)
 
 		node = null
 
@@ -122,7 +122,7 @@
 
 	disconnect(obj/machinery/atmospherics/reference)
 		if(reference==node)
-			del(network)
+			zDel(network)
 			node = null
 
 		return null

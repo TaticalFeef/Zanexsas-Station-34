@@ -47,7 +47,7 @@ datum/controller/game_controller/proc/particle_process()
 			if(timer > time_to_disappear)
 				alpha = alpha + alpha_fade
 				if(alpha < 1)
-					del src
+					zDel(src)
 
 /*
 

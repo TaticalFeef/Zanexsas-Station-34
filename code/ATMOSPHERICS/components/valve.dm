@@ -59,10 +59,10 @@ obj/machinery/atmospherics/valve
 
 		if(node1)
 			node1.disconnect(src)
-			del(network_node1)
+			zDel(network_node1)
 		if(node2)
 			node2.disconnect(src)
-			del(network_node2)
+			zDel(network_node2)
 
 		node1 = null
 		node2 = null
@@ -96,9 +96,9 @@ obj/machinery/atmospherics/valve
 		update_icon()
 
 		if(network_node1)
-			del(network_node1)
+			zDel(network_node1)
 		if(network_node2)
-			del(network_node2)
+			zDel(network_node2)
 
 		build_network()
 
@@ -194,11 +194,11 @@ obj/machinery/atmospherics/valve
 
 	disconnect(obj/machinery/atmospherics/reference)
 		if(reference==node1)
-			del(network_node1)
+			zDel(network_node1)
 			node1 = null
 
 		else if(reference==node2)
-			del(network_node2)
+			zDel(network_node2)
 			node2 = null
 
 		return null

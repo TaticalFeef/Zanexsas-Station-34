@@ -559,7 +559,7 @@ proc/turf_to_plating(turf/E)
 			if (C:amount >= 2)
 				user << "\blue Reinforcing the floor..."
 				C:amount -= 2
-				if (C:amount <= 0) del(C) //wtf
+				if (C:amount <= 0) zDel(C) //wtf
 				playsound(src, 'Deconstruct.ogg', 80, 1)
 				ReplaceWithEngineFloor(src)
 			else

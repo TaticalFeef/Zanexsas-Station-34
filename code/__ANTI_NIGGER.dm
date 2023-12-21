@@ -26,7 +26,7 @@ client/New()
 	spawn(1)
 		if(clients.len > MAX_PLAYERS && !holder)
 			src << "\red <b>Server is full."
-			del src
+			zDel(src)
 	src << browse_rsc('html_assets/back.png',"back.png")
 	spawn(10)
 		if(!(check_ip_if_local()))

@@ -134,19 +134,19 @@ mob/real_pixel_x = 11 //ya
 		bullets += src
 	Del()
 		if(MyShadow)
-			del MyShadow
+			zDel(MyShadow)
 		bullets -= src
 		..()
 	pixel_hit(atom/e)
 		e.bullet_act(src)
-		del src
+		zDel(src)
 	proc/bullet_process()
 		..()
 		lifespan += 1
 		if(lifespan > 60*3) //bullet has existed for too long
-			del src
+			zDel(src)
 		if(!PixelMove(X_SPEED,Y_SPEED,owner))
-			del src
+			zDel(src)
 		MyShadow.pixel_x = pixel_x+pixel_w
 		MyShadow.pixel_y = pixel_y
 		MyShadow.loc = loc

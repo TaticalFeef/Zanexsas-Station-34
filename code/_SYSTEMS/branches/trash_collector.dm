@@ -32,7 +32,7 @@
 var/global/datum/authority/branch/trash/TrashAuthority = new() //This is the actual process called on.
 /datum/var/ta_directive //This is used in reference to deletion later in the process to accurately sweep stuff away.
 
-//This is the proc you should be called on to trash something, not calling on the other procs directly. This is a replacement for del().
+//This is the proc you should be called on to trash something, not calling on the other procs directly. This is a replacement for zDel().
 //cdel stands for clean delete.
 /proc/cdel(datum/garbage, override = null, countdown)
 	if(countdown)
@@ -67,7 +67,7 @@ var/global/datum/authority/branch/trash/TrashAuthority = new() //This is the act
 	var/ready_trash[] = list() //Reference IDs stored to be trashed later.
 	var/purge_trash[] = list() //Whatever we need to hard delete for any reason.
 	var/cannot_trash[] = list() //Everything we weren't able to trash is referenced here as we hard delete it. We can later find and look at this list.
-	var/purging = 0 //Toggle to hard delete everything with del(). This shouldn't be toggled on unless there is some crazy bottleneck.
+	var/purging = 0 //Toggle to hard delete everything with zDel(). This shouldn't be toggled on unless there is some crazy bottleneck.
 	var/soft_del_count = 0 //How many soft deletions we did. This is the primary thing we're concerned with, and we don't list these items since they were successfully collected.
 	var/hard_del_count = 0 //How many hard deletions we did. This gives us a baseline for what ISN'T being deleted properly, with cannot_trash as our specific reference list.
 
@@ -92,7 +92,7 @@ var/global/datum/authority/branch/trash/TrashAuthority = new() //This is the act
 #define TA_EMPTY_PER_TICK 120 //120 soft deletion checks per tick. 150 is the standard elsewhere, lowering it for now.
 #define TA_PURGE_PER_TICK 25 //25 hard deletions per tick. 30 is the standard elsewhere, lowering it.
 //Remember, we only need to run this to check if the item has been collected by the trash compactor. If it hasn't,
-//only THEN do we del() it. Otherwise we're good to go.
+//only THEN do we zDel() it. Otherwise we're good to go.
 /datum/authority/branch/trash/proc/EmptyTrash() //Disposing of the trash proper.
 
 	var/soft_del_remaining = TA_EMPTY_PER_TICK

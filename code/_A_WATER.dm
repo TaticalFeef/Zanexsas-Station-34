@@ -42,9 +42,9 @@ turf
 			gW2.layer = TURF_LAYER+0.5
 	Del()
 		if(gW1)
-			del gW1
+			zDel(gW1)
 		if(gW2)
-			del gW2
+			zDel(gW2)
 		if(src in water_changed)
 			water_changed -= src
 		..()
@@ -68,13 +68,13 @@ obj
 				if(istype(T,/obj/item/water_pipe))
 					var/obj/item/water_pipe/E = T
 					amount += E.amount
-					del T
+					zDel(T)
 				if(istype(T,/obj/water/pipes))
 					var/obj/water/pipes/G = T
 					if(G.water_pressure == 0)
 						amount += 1
 						user << "You disconnect the pipe on the floor and add it to your stack."
-						del T
+						zDel(T)
 					else
 						user << "\red <b>You cannot disconnect this pipe! Water is flowing through it currently."
 				if(istype(T,/turf/simulated))
@@ -86,7 +86,7 @@ obj
 						amount -= 1
 						new /obj/water/pipes(locate(T.x,T.y,T.z))
 						if(amount == 0)
-							del src
+							zDel(src)
 obj
 	water_overlay
 		icon = 'water sprites.dmi'
@@ -118,7 +118,7 @@ obj
 					user << "\red <b>You pry the pipe out!"
 					var/obj/item/water_pipe/A = new(locate(x,y,z))
 					A.amount = 1
-					del src
+					zDel(src)
 				if(istype(G,/obj/item/weapon/wrench))
 					var/new_dir = input(user,"What direction should this pipe have?","Change direction") as null|anything in PIPE_DIRS
 					if(new_dir)
@@ -146,7 +146,7 @@ obj
 						A.y_spd = (rand(-30,30)/10)
 					playsound(src, 'explosionfar.ogg', 100, 1, 30)
 					playsound(src, "explosion", 100, 1, 15)
-					del src
+					zDel(src)
 					return
 				if(water_pressure > 0)
 					if(icon_state != "4-way")
@@ -272,7 +272,7 @@ obj
 				var/t = null
 				var/obj/water/pipes/G = locate(/obj/water/pipes) in loc
 				if(G)
-					t = text("<B>Pressure:</B> [G.water_pressure]m³")
+					t = text("<B>Pressure:</B> [G.water_pressure]mï¿½")
 				else
 					usr << "\blue <B>You are too far away.</B>"
 
@@ -293,7 +293,7 @@ obj
 		ex_act(severity)
 			switch(severity)
 				if(1)
-					del src
+					zDel(src)
 				if(2)
 					damaged = prob(75)
 				if(3)

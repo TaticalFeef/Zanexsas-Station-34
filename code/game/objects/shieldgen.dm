@@ -154,7 +154,7 @@
 				tilepick = null
 				tile = locate( (src.x + xa),(src.y + ya),src.z )
 				tilepick = locate(/obj/shieldwall) in tile
-				if(tilepick) del(tilepick)
+				if(tilepick) zDel(tilepick)
 				tile:updatecell = 1
 				tile:buildlinks()
 		src.anchored = 0

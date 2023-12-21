@@ -70,7 +70,7 @@ MOP
 		user << "\blue You have finished mopping!"
 		var/turf/U = A.loc
 		src.reagents.reaction(U)
-		if(A) del(A)
+		if(A) zDel(A)
 		mopcount++
 
 	if(mopcount >= 5) //Okay this stuff is an ugly hack and i feel bad about it.

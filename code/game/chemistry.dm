@@ -24,7 +24,6 @@
 		special_processing -= src
 		..()
 
-
 	var/spd = 0
 	var/ang = 0
 	var/h = 0

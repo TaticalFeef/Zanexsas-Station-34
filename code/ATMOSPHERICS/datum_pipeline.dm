@@ -10,11 +10,11 @@ datum/pipeline
 
 	Del()
 		if(network)
-			del(network)
+			zDel(network)
 
 		if(air && air.volume)
 			temporarily_store_air()
-			del(air)
+			zDel(air)
 
 		..()
 

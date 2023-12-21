@@ -90,7 +90,7 @@
 					playsound(src, 'Deconstruct.ogg', 50, 1)
 					if(do_after(user, 20))
 						P:amount -= 5
-						if(!P:amount) del(P)
+						if(!P:amount) zDel(P)
 						user << "\blue You add cables to the frame."
 						src.state = 3
 						src.icon_state = "3"
@@ -123,7 +123,7 @@
 					playsound(src, 'Deconstruct.ogg', 50, 1)
 					if(do_after(user, 20))
 						P:amount -= 2
-						if(!P:amount) del(P)
+						if(!P:amount) zDel(P)
 						user << "\blue You put in the glass panel."
 						src.state = 4
 						src.icon_state = "4"

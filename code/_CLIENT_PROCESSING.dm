@@ -224,13 +224,13 @@ mob
 		for(var/obj/item/weapon/grab/G in src.mob.grabbed_by)
 			if (G.state == 1)
 				if (!( grabbing.Find(G.assailant) ))
-					del(G)
+					zDel(G)
 			else
 				if (G.state == 2)
 					src.move_delay = world.time + 10
 					if (prob(25))
 						mob.visible_message("\red [mob] has broken free of [G.assailant]'s grip!")
-						del(G)
+						zDel(G)
 					else
 						return
 				else
@@ -238,7 +238,7 @@ mob
 						src.move_delay = world.time + 10
 						if (prob(5))
 							mob.visible_message("\red [mob] has broken free of [G.assailant]'s headlock!")
-							del(G)
+							zDel(G)
 						else
 							return
 

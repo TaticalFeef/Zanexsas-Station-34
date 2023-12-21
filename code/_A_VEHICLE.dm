@@ -26,7 +26,7 @@ atom/movable
 			var/icon/I = new(icon)
 			pixel_collision_size_x = I.Width()
 			pixel_collision_size_y = I.Height()
-			del I
+			zDel(I)
 		PixelCollision(atom/a)
 			var/st1 = Get_Position_X()+pixel_collision_size_x >= a.Get_Position_X()
 			var/st2 = Get_Position_X() <= a.Get_Position_X()+world.icon_size
@@ -68,7 +68,7 @@ atom/movable
 							if(istype(src,/obj/machinery/vehicle))
 								if(round(src:velocity:SquareMagnitude()/50) > 80)
 									explosion(e, 2, 3, 5, 10,0)
-									del src
+									zDel(src)
 								else
 									bumpedwalls += 1
 							else
@@ -126,8 +126,8 @@ vy = v * sin(angle)
 		I += rgb(rand(0,255),rand(0,255),rand(0,255))
 		I.Blend(E,ICON_OVERLAY)
 		icon = I
-		del E
-		del I
+		zDel(E)
+		zDel(I)
 	Del()
 		for(var/atom/movable/A as mob|obj in src)
 			A.loc = src.loc
@@ -184,18 +184,18 @@ vy = v * sin(angle)
 /obj/machinery/vehicle/meteorhit(var/obj/O as obj)
 	for(var/atom/movable/A as mob|obj in src)
 		A.loc = src.loc
-	del(src)
+	zDel(src)
 
 /obj/machinery/vehicle/ex_act(severity)
 	for(var/atom/movable/A as mob|obj in src)
 		A.loc = src.loc
 		A.ex_act(severity)
-	del(src)
+	zDel(src)
 
 /obj/machinery/vehicle/blob_act()
 	for(var/atom/movable/A as mob|obj in src)
 		A.loc = src.loc
-	del(src)
+	zDel(src)
 
 /obj/machinery/vehicle/relaymove(mob/user as mob, direction)
 	if (user.stat)

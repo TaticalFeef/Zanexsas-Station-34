@@ -292,7 +292,7 @@ obj/dance_displayer/New(loc,var/g)
 	..()
 	owner.ANIMATION_RUNNING = 1
 	if(PlayerIcon)
-		del PlayerIcon
+		zDel(PlayerIcon)
 	icon = null
 	if(owner)
 		owner.alpha = 0
@@ -314,17 +314,17 @@ obj/dance_displayer/New(loc,var/g)
 
 obj/dance_displayer/Del()
 	if(Limb1)
-		del Limb1
+		zDel(Limb1)
 	if(Limb2)
-		del Limb2
+		zDel(Limb2)
 	if(Limb3)
-		del Limb3
+		zDel(Limb3)
 	if(Limb4)
-		del Limb4
+		zDel(Limb4)
 	if(Limb5)
-		del Limb5
+		zDel(Limb5)
 	if(Limb6)
-		del Limb6
+		zDel(Limb6)
 	..()
 
 obj/dance_displayer/proc/End_Animation()
@@ -334,7 +334,7 @@ obj/dance_displayer/proc/End_Animation()
 		owner.MyShadow.vis_contents = null
 		owner.MyShadow.transform = owner.transform
 	owner:update_clothing() //update their stuff
-	del src
+	zDel(src)
 
 obj/dance_displayer/proc/Reset_Limbs()
 	for(var/obj/limb_dance/g in list(Limb1,Limb2,Limb3,Limb4,Limb5,Limb6))
@@ -350,7 +350,7 @@ obj/dance_displayer/proc/SplitIcon()
 		var/image/Image = a
 		var/icon/EE = new(Image.icon,Image.icon_state)
 		PlayerIcon.Blend(EE,ICON_OVERLAY,Image.pixel_x+1,Image.pixel_y+1)
-		del EE
+		zDel(EE)
 
 	PlayerIcon.Blend(owner.icon,ICON_OVERLAY,1,1)
 
@@ -358,7 +358,7 @@ obj/dance_displayer/proc/SplitIcon()
 		var/image/Image = a
 		var/icon/EE = new(Image.icon,Image.icon_state)
 		PlayerIcon.Blend(EE,ICON_OVERLAY,Image.pixel_x+1,Image.pixel_y+1)
-		del EE
+		zDel(EE)
 	/*
 	coders, mess with this on your own. this proc what it does is create a /obj/limb_dance with the icon of your player icon, and the args are
 
@@ -399,7 +399,7 @@ obj/dance_displayer/proc/DoSplitIcon(var/x1,var/y1,var/x2,var/y2,var/ord)
 	var/icon/E = new('Sprited Animations.dmi',"Blank Dir 2 Template",2)
 	E.Blend(I,ICON_OVERLAY,x1,y1)
 
-	del I
+	zDel(I)
 	G.transform = owner.transform
 	G.layer = owner.layer + ord/10
 	G.icon = E

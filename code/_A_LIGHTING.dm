@@ -58,7 +58,7 @@ turf
 		del_lights()
 			if(lighting_inited)
 				for(var/obj/shading/g in src)
-					del g
+					zDel(g)
 		init_light(force = 0)
 			if(lighting_inited || force)
 				del_lights()
@@ -225,7 +225,7 @@ atom
 		sd_lumcount = 0
 	Del()
 		if(light)
-			del light
+			zDel(light)
 		..()
 	proc
 		sd_SetLuminosity(var/amount)

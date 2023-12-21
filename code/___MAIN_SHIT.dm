@@ -136,7 +136,7 @@ obj
 				l = new(locate(x,y,z))
 		Del()
 			if(l)
-				del l
+				zDel(l)
 			..()
 		ex_act()
 			return

@@ -14,7 +14,7 @@ obj/machinery/atmospherics/pipe
 
 	proc/check_pressure(pressure)
 		//Return 1 if parent should continue checking other pipes
-		//Return null if parent should stop checking other pipes. Recall: del(src) will by default return null
+		//Return null if parent should stop checking other pipes. Recall: zDel(src) will by default return null
 
 		return 1
 
@@ -47,7 +47,7 @@ obj/machinery/atmospherics/pipe
 		return parent.return_network(reference)
 
 	Del()
-		del(parent)
+		zDel(parent)
 		if(air_temporary)
 			loc.assume_air(air_temporary)
 
@@ -141,11 +141,11 @@ obj/machinery/atmospherics/pipe
 			var/pressure_difference = pressure - environment.return_pressure()
 
 			if(pressure_difference > maximum_pressure)
-				del(src)
+				zDel(src)
 
 			else if(pressure_difference > fatigue_pressure)
 				if(prob(5))
-					del(src)
+					zDel(src)
 
 			else return 1
 
@@ -181,7 +181,7 @@ obj/machinery/atmospherics/pipe
 					dir = get_dir(src,node2)
 
 				else
-					del(src)
+					zDel(src)
 
 		initialize()
 			var/connect_directions
@@ -253,12 +253,12 @@ obj/machinery/atmospherics/pipe
 		disconnect(obj/machinery/atmospherics/reference)
 			if(reference == node1)
 				if(istype(node1, /obj/machinery/atmospherics/pipe))
-					del(parent)
+					zDel(parent)
 				node1 = null
 
 			if(reference == node2)
 				if(istype(node2, /obj/machinery/atmospherics/pipe))
-					del(parent)
+					zDel(parent)
 				node2 = null
 
 			update_icon()
@@ -456,7 +456,7 @@ obj/machinery/atmospherics/pipe
 		disconnect(obj/machinery/atmospherics/reference)
 			if(reference == node1)
 				if(istype(node1, /obj/machinery/atmospherics/pipe))
-					del(parent)
+					zDel(parent)
 				node1 = null
 
 			update_icon()
@@ -546,7 +546,7 @@ obj/machinery/atmospherics/pipe
 		disconnect(obj/machinery/atmospherics/reference)
 			if(reference == node1)
 				if(istype(node1, /obj/machinery/atmospherics/pipe))
-					del(parent)
+					zDel(parent)
 				node1 = null
 
 			update_icon()
@@ -626,17 +626,17 @@ obj/machinery/atmospherics/pipe
 		disconnect(obj/machinery/atmospherics/reference)
 			if(reference == node1)
 				if(istype(node1, /obj/machinery/atmospherics/pipe))
-					del(parent)
+					zDel(parent)
 				node1 = null
 
 			if(reference == node2)
 				if(istype(node2, /obj/machinery/atmospherics/pipe))
-					del(parent)
+					zDel(parent)
 				node2 = null
 
 			if(reference == node3)
 				if(istype(node3, /obj/machinery/atmospherics/pipe))
-					del(parent)
+					zDel(parent)
 				node3 = null
 
 			update_icon()
@@ -664,7 +664,7 @@ obj/machinery/atmospherics/pipe
 				icon_state = "manifold_[connected]_[unconnected]"
 
 				if(!connected)
-					del(src)
+					zDel(src)
 
 			return
 
