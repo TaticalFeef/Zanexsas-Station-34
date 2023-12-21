@@ -23,7 +23,7 @@ datum
 
 			if(usr.key == world.host)
 				var/obj/structure/hs/rococo/giant/chaos/c = new(usr.loc)
-				cdel(c)
+				zDel(c)
 			else
 				usr << "não kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
 				//usr.verbs-=typesof(/datum/alternians/verb/)

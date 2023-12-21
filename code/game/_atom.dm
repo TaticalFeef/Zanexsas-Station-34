@@ -1,8 +1,8 @@
-/atom/Dispose()
+/atom/Destroyed()
 	if(reagents)
-		cdel(reagents)
+		zDel(reagents)
 	if(light)
-		cdel(light)
+		zDel(light)
 		light = null
 	. = ..()
 

@@ -96,6 +96,8 @@ datum/controller/game_controller
 	var/SLOW_PROCESS_TIME = 10
 	var/process_objects_done = 0
 	var/T = 0
+	var/datum/controller/subsystem/timers/timer_subsystem
+	var/datum/controller/subsystem/garbage/garbage_subsystem
 	proc
 		setup_objects()
 		process()
@@ -147,6 +149,10 @@ datum/controller/game_controller/proc/setup()
 	spawn ticker.pregame()
 	initialize_special_objects()
 	create_sandbox_spawn_list()
+	timer_subsystem = new /datum/controller/subsystem/timers()
+	world << "Timer inicializado."
+	garbage_subsystem = new /datum/controller/subsystem/garbage()
+	world << "LixeiraDoZanequinhaTM inicializado."
 	var/total_init_time = (world.timeofday - RLstart_time) / 10
 	world << "Total initializations complete in [total_init_time] seconds!"
 
@@ -255,6 +261,8 @@ datum/controller/game_controller/
 
 		master_Processed = 0
 
+		timer_subsystem.process_timers()
+		garbage_subsystem.process_garbage()
 		mobs_process()
 
 		T = T + 1
