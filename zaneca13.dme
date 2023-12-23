@@ -69,6 +69,7 @@
 #include "code\_TTS_IMPLEMENTATION.dm"
 #include "code\__DEFINES\_ZDEL.dm"
 #include "code\__HELPERS\callback.dm"
+#include "code\__HELPERS\color.dm"
 #include "code\__HELPERS\list.dm"
 #include "code\__HELPERS\winshow.dm"
 #include "code\_SYSTEMS\controllers\hooks-defs.dm"
