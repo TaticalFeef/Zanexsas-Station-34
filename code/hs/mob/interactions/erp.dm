@@ -1,23 +1,6 @@
 #define MAX_BUCKET_METER 100
 #define REST_PERIOD 500
 
-mob/living/carbon/human/var/mob/living/carbon/human/partner
-mob/living/carbon/human/var/potenzia
-mob/living/carbon/human/var/bucketMeter
-mob/living/carbon/human/var/tired = 0
-mob/living/carbon/human/var/tentaclePower = 0
-mob/living/carbon/human/var/consent = FALSE
-mob/living/carbon/human/var/datum/tentacleType/tentacle
-
-/mob/living/carbon/human/New()
-	..()
-	if(src.gender == "male") // male.....
-	//fiquei 3 horas tentando arrumas isso aqui
-	//o problema era que tava checando pra "Male"
-	//um M maiuscokhtypjjjfk
-		tentaclePower = rand(5, 40)
-		assignRandomTentacleType()
-
 /mob/living/carbon/human/proc/assignRandomTentacleType()
 	var/list/tentacle_types = typesof(/datum/tentacleType) - /datum/tentacleType
 	var/type = pick(tentacle_types)
@@ -36,13 +19,15 @@ mob/living/carbon/human/var/datum/tentacleType/tentacle
 
 /mob/living/carbon/human/proc/requestConsent(var/mob/living/carbon/human/R)
 	//R = Requester
-	var/choice = alert(partner, "[R] wants to perform a tentacle interaction. Do you consent?", "Consent Request", "Yes", "No")
+	var/choice = alert(src, "[R] wants to perform a tentacle interaction. Do you consent?", "Consent Request", "Yes", "No")
 	if(choice == "Yes")
 		R.partner = src
 		src.partner = R
 		R.consent = TRUE
 		src.consent = TRUE
 		R.performInteraction()
+	else
+		R << "[src] não aceitou seu pedido..."
 
 /mob/living/carbon/human/proc/performInteraction()
 	partner.fug()
