@@ -16,7 +16,6 @@
 
 /datum/tentacleType/StrongTentacle/applyEffect(mob/living/user, mob/living/target, obj/cleanable/bucket_juice/b)
 	target.TakeBruteDamage(power * TENTACLE_DAMAGE_MULTIPLIER)
-	world << "TAKE FURY!"
 	view() << "<font color=red><b>[target] SCREAMS!</b></font>"
 
 /datum/tentacleType/HealingTentacle
@@ -27,3 +26,12 @@
 /datum/tentacleType/HealingTentacle/applyEffect(mob/living/user, mob/living/target, obj/cleanable/bucket_juice/b)
 	target.TakeBruteDamage(power)
 	b.name = "Gaia's Seed"
+	b.color = rgb(0, 163, 108)
+	animateDropShadowEffect(b)
+
+/datum/tentacleType/HealingTentacle/proc/animateDropShadowEffect(obj/cleanable/bucket_juice/b)
+	var/f = filter(type="outline", x=0, y=0, size=1, offset=2, color=rgb(42, 170, 138))
+	b.filters += f
+
+	animate(f, size=4, time=10, loop=-1, flags=ANIMATION_PARALLEL)
+	animate(size=1, time=10)
