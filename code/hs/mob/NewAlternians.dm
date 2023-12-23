@@ -4,11 +4,15 @@
 		spawn()
 			//src << sound('titlesong.ogg',channel=LOBBY_CHANNEL,volume=47, repeat = 1) LOL
 			if(src.alternian_blood_type != "Mutant")
+				if(src.gender == "male")
+					tentaclePower = rand(5, 40)
 				switch(src.alternian_blood_type)
 					if("Rust")
 						src.maxhealth = rand(100,150)
 						src.mutations = src.mutations |= 1
 						src.contents += new /datum/alternians/rust/ (src)
+						if(src.gender == "male")
+							tentacle = new /datum/tentacleType/StrongTentacle()
 					if("Bronze")
 						src.maxhealth = rand(100,150)
 					if("Gold")
@@ -19,12 +23,18 @@
 						src.contents += new  /datum/alternians/fly/ (src)
 					if("Lime")
 						src.maxhealth = rand(150,200)
+						if(src.gender == "male")
+							tentacle = new /datum/tentacleType/HealingTentacle()
 					if("Olive")
 						src.maxhealth = rand(200,250)
 						src.contents += new /datum/alternians/olive/ (src)
+						if(src.gender == "male")
+							tentacle = new /datum/tentacleType/HealingTentacle()
 					if("Jade")
 						src.maxhealth = rand(150,200)
 						src.contents += new /datum/alternians/jade/ (src)
+						if(src.gender == "male")
+							tentacle = new /datum/tentacleType/HealingTentacle()
 					if("Cerulean")
 						src.maxhealth = rand(200,250)
 						src.contents += new /datum/alternians/cerulean/ (src)
@@ -41,10 +51,12 @@
 						if(prob(10))
 							src.nodamage = 1
 							src << "\blue You are a miracle!"
-					if("Fuchsia")   
+					if("Fuchsia")
 						src.maxhealth = rand(300,350)
 						src.contents += new /datum/alternians/telephaty/ (src)
 						src.contents += new  /datum/alternians/fly/ (src)
 					if("Mutant")
 						src.maxhealth = rand(25,75) //quero ver os mutante levando ik de toolbox!!!1!!1!
 				src.health = src.maxhealth
+				if(!tentacle)
+					assignRandomTentacleType()
