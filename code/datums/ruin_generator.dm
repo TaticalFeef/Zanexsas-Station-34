@@ -62,6 +62,7 @@ var/global/list/occupied_turfs = list()
 		for(var/y_offset = 0 to RUIN_SIZE - 1)
 			var/turf/T = locate(x + x_offset, y + y_offset, z)
 			occupied_turfs.Add(T)
+	valid_turfs.Remove(occupied_turfs)
 	return valid_turfs
 
 /proc/pick_n_pop(list/L)
