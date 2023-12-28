@@ -55,8 +55,10 @@
 	u << "|||||||||||||||||||||||||||||||||||||"
 
 /datum/component/mood/proc/get_general_mood_message()
-	if(mood_value > 10)
-		return "\green Estou me sentindo bem mula!"
+	if(mood_value > 20)
+		return "\green Estou me sentindo ótimo!"
+	else if(mood_value > 10)
+		return "\green Estou me sentindo bem!"
 	else if(mood_value == 0)
 		return "\yellow Estou me sentindo ok mula..."
 	else if(mood_value < -10)

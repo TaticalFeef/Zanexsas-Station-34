@@ -10,9 +10,13 @@
 	if(mood_component)
 		switch(mood_component.mood_value)
 			if(11 to INFINITY)
+				icon_state = "jolly_mood"
+			if(1 to 10)
 				icon_state = "happy_mood"
-			if(-INFINITY to -11)
+			if(0 to -10)
 				icon_state = "sad_mood"
+			if(-INFINITY to -11)
+				icon_state = "suicide_mood"
 			else
 				icon_state = "neutral_mood"
 

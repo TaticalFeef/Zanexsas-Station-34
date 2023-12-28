@@ -58,6 +58,11 @@
 		GET_COMPONENT_FROM(mood, /datum/component/mood, src)
 		if(mood)
 			mood.add_moodlet(/datum/moodlet/afterglow)
+		//hum
+		if(partner.gender == "male")
+			GET_COMPONENT_FROM(moodPartner, /datum/component/mood, src.partner)
+			if(moodPartner)
+				moodPartner.add_moodlet(/datum/moodlet/sodomized)
 		src.tired = 1
 		src.consent = FALSE
 		src.partner.consent = FALSE

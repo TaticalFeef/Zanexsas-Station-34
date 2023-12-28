@@ -125,7 +125,7 @@
 #include "code\datums\components\moods\_mood.dm"
 #include "code\datums\components\moods\_mood_hud.dm"
 #include "code\datums\components\moods\_mood_let.dm"
-#include "code\datums\components\moods\afterglow.dm"
+#include "code\datums\components\moods\erp.dm"
 #include "code\datums\diseases\cold.dm"
 #include "code\datums\diseases\dna_spread.dm"
 #include "code\datums\diseases\fake_gbs.dm"
