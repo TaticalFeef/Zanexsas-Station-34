@@ -93,9 +93,6 @@ var/kick_inactive_players = 0 //do_kick on mode handles.
 			if (S.name != "AI")
 				del(S)
 
-	if(mode.do_kick == 1)
-		world << "<b><font color='red'>Automatic kicking is enabled! After [TIMETOKICK/60] minutes of inactivity, you will be kicked."
-		kick_inactive_players = 1
 	if(mode.sandbox_allowed)
 		sandbox = 1
 	if(mode.events_enabled) //src.mob.ghostize()

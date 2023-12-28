@@ -4,8 +4,6 @@
 		spawn()
 			//src << sound('titlesong.ogg',channel=LOBBY_CHANNEL,volume=47, repeat = 1) LOL
 			if(src.alternian_blood_type != "Mutant")
-				if(src.gender == "male")
-					tentaclePower = rand(5, 40)
 				switch(src.alternian_blood_type)
 					if("Rust")
 						src.maxhealth = rand(100,150)
@@ -58,5 +56,7 @@
 					if("Mutant")
 						src.maxhealth = rand(25,75) //quero ver os mutante levando ik de toolbox!!!1!!1!
 				src.health = src.maxhealth
-				if(!tentacle)
-					assignRandomTentacleType()
+				if(src.gender == "male")
+					tentaclePower = rand(5, 40)
+					if(!tentacle)
+						assignRandomTentacleType()

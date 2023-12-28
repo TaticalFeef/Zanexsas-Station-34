@@ -1,2 +1,2 @@
-/mob/enemy/hs
+/mob/living/carbon/enemy/
 	icon = 'hs_critters.dmi'

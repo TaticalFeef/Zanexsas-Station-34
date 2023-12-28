@@ -1,7 +1,15 @@
 datum/var/zdeleted = FALSE
 datum/proc/Destroyed()
 	tag = null
+	var/list/dc = datum_components
+	for(var/I in dc)
+		var/datum/component/C = I
+		C._RemoveNoSignal()
+		zDel(C)
+	if(dc)
+		dc.Cut()
 datum/proc/Recycle()
+
 //zanequinhaGariDestroyerMegazordTM
 proc/zDel(datum/D, hint = ZDEL_HINT_QUEUE)
 	if(!D)
@@ -75,6 +83,7 @@ datum/controller/subsystem/garbage/proc/process_garbage()
 					if(world.time - queue_time > GC_CHECK_QUEUE)
 						if(!D.zdeleted)
 							D.Destroyed()
+							D.SendSignal(COMSIG_PARENT_ZDELETED)
 							D.zdeleted = TRUE
 							del D
 						queue.Cut(i, i+1)

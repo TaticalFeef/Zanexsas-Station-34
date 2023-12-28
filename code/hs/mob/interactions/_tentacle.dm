@@ -30,8 +30,9 @@
 	animateDropShadowEffect(b)
 
 /datum/tentacleType/HealingTentacle/proc/animateDropShadowEffect(obj/cleanable/bucket_juice/b)
-	var/f = filter(type="outline", x=0, y=0, size=1, offset=2, color=rgb(42, 170, 138))
-	b.filters += f
-
-	animate(f, size=4, time=10, loop=-1, flags=ANIMATION_PARALLEL)
-	animate(size=1, time=10)
+	var/start = b.filters.len
+	b.filters += filter(type="outline", size=1, color=rgb(42, 170, 138, 100))
+	var/g
+	g = b.filters[start+1]
+	animate(g, size=2, time=0, loop=-1, flags=ANIMATION_PARALLEL)
+	animate(size = 1, time=4)

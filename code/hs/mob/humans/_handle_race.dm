@@ -4,8 +4,6 @@
 	proc/handle_race()
 		spawn
 			if(src.health > 0)
-				// Mood nigga
-				handleMood()
 				if(health >= maxhealth/2)
 					stat = 0
 				var/_prob = rand(1,10)

@@ -18,8 +18,8 @@
 		Particle_Ready()
 			..()
 			x_pos = 16+(sin(timer*10)*24)
-			y_pos = 16+(cos(timer*10)*12)
-			animate(src, pixel_z = -100, time = 10, easing = BOUNCE_EASING)
+			y_pos = cos(timer*5)*6
+			animate(src, pixel_z = -50, time = 10, easing = BOUNCE_EASING)
 	attack
 		icon_state = "attack"
 		time_to_disappear = 14
