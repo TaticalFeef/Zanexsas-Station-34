@@ -58,6 +58,7 @@
 	//race or alternians :3 LOOOOOOOl
 	handle_race()
 
+	SendSignal(COMSIG_HUMAN_LIFE, src)
 
 	clamp_values()
 

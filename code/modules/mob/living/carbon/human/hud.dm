@@ -97,6 +97,10 @@ mob
 	if(mymob.uses_hud)
 		spawn()
 			if(istype(mymob, /mob/living/carbon/human))
+				//feito no componente de mood, codigo otimo e nem um puco confuso
+				//var/obj/screen/mood_hud/mood_hud = new(mymob)
+				//mymob.client.screen += mood_hud
+				instantiate_mood_button()
 				instantiate_height_calculator() //we need to instantiate the height calculator
 				src.human_hud()
 				//return
