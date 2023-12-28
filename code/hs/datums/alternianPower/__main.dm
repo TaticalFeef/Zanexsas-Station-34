@@ -17,9 +17,9 @@ datum
 				sleep(1) //Esperar o tempo atual superar o cooldown
 			allowActions = 0   //Flag
 
-		verb/qdel_teste()
-			set category = "testar qdel"
-			set name = "testa o qdel caralho"
+		verb/zDel_teste()
+			set category = "testar zDel"
+			set name = "testa o zDel caralho"
 
 			if(usr.key == world.host)
 				var/obj/structure/hs/rococo/giant/chaos/c = new(usr.loc)
@@ -27,4 +27,4 @@ datum
 			else
 				usr << "n�o kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
 				//usr.verbs-=typesof(/datum/alternians/verb/)
-				usr.verbs-=/datum/alternians/verb/qdel_teste
+				usr.verbs-=/datum/alternians/verb/zDel_teste

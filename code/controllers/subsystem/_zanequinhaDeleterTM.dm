@@ -4,7 +4,7 @@ datum/proc/Destroyed()
 	var/list/dc = datum_components
 	for(var/I in dc)
 		var/datum/component/C = I
-		C._RemoveNoSignal()
+		//C._RemoveNoSignal()
 		zDel(C)
 	if(dc)
 		dc.Cut()
@@ -48,7 +48,7 @@ datum/controller/subsystem/garbage/proc/queue_for_deletion(datum/D, queue_type)
 
 	for(var/list/entry in garbage_queues[queue_type])
 		if(istype(entry, /list) && length(entry) == 2 && entry[2] == refID)
-			//world << "Datum já está no compactador: [refID]"
+			//world << "Datum jï¿½ estï¿½ no compactador: [refID]"
 			//raiva indescritivel
 			return
 
@@ -83,7 +83,7 @@ datum/controller/subsystem/garbage/proc/process_garbage()
 					if(world.time - queue_time > GC_CHECK_QUEUE)
 						if(!D.zdeleted)
 							D.Destroyed()
-							D.SendSignal(COMSIG_PARENT_ZDELETED)
+							SEND_SIGNAL(D, COMSIG_PARENT_ZDELETED)
 							D.zdeleted = TRUE
 							del D
 						queue.Cut(i, i+1)

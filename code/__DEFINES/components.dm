@@ -1,18 +1,40 @@
 #define GET_COMPONENT_FROM(varname, path, target) var##path/##varname = ##target.GetComponent(##path)
 #define GET_COMPONENT(varname, path) GET_COMPONENT_FROM(varname, path, src)
 
-// How multiple components of the exact same type are handled in the same datum
+#define COMPONENT_INCOMPATIBLE 1
+/// Returned in PostTransfer to prevent transfer, similar to `COMPONENT_INCOMPATIBLE`
+#define COMPONENT_NOTRANSFER 2
 
-#define COMPONENT_DUPE_HIGHLANDER 0 //old component is deleted (default)
-#define COMPONENT_DUPE_ALLOWED 1    //duplicates allowed
-#define COMPONENT_DUPE_UNIQUE 2     //new component is deleted
+/// Return value to cancel attaching
+#define ELEMENT_INCOMPATIBLE 1
+
+// /datum/element flags
+/// Causes the detach proc to be called when the host object is being deleted
+#define ELEMENT_DETACH		(1 << 0)
+/**
+  * Only elements created with the same arguments given after `id_arg_index` share an element instance
+  * The arguments are the same when the text and number values are the same and all other values have the same ref
+  */
+#define ELEMENT_BESPOKE		(1 << 1)
+
+// How multiple components of the exact same type are handled in the same datum
+/// old component is deleted (default)
+#define COMPONENT_DUPE_HIGHLANDER		0
+/// duplicates allowed
+#define COMPONENT_DUPE_ALLOWED			1
+/// new component is deleted
+#define COMPONENT_DUPE_UNIQUE			2
+/// old component is given the initialization args of the new
+#define COMPONENT_DUPE_UNIQUE_PASSARGS	4
+/// each component of the same type is consulted as to whether the duplicate should be allowed
+#define COMPONENT_DUPE_SELECTIVE		5
 
 // All signals. Format:
 // When the signal is called: (signal arguments)
 
 #define COMSIG_COMPONENT_ADDED "component_added"				//when a component is added to a datum: (datum/component)
 #define COMSIG_COMPONENT_REMOVING "component_removing"			//before a component is removed from a datum because of RemoveComponent: (datum/component)
-#define COMSIG_PARENT_ZDELETED "parent_zdeleted"				//before a datum's Destroy() is called: ()
+#define COMSIG_PARENT_ZDELETED "parent_zdeleted"				//before a datum's Destroyed() is called: ()
 
 #define COMSIG_MOODLET_ADDED "moodlet_added"
 #define COMSIG_MOODLET_REMOVED "moodlet_removed"
@@ -21,3 +43,5 @@
 #define COMSIG_MOB_HEALTH_CHANGED "mob_health_changed"
 
 #define COMSIG_HUMAN_LIFE "mob_ticked"
+
+#define SEND_SIGNAL(target, sigtype, arguments...) ( !target.comp_lookup || !target.comp_lookup[sigtype] ? NONE : target._SendSignal(sigtype, list(target, ##arguments)) )

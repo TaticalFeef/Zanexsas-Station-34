@@ -83,3 +83,9 @@
 
 	if (object == GLOBAL_PROC)
 		return call(delegate)(arglist(calling_arguments))
+
+/proc/CallAsync(datum/source, proctype, list/arguments)
+	set waitfor = FALSE
+	return call(source, proctype)(arglist(arguments))
+
+#define RETURN_TYPE(X)

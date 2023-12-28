@@ -19,7 +19,7 @@ datum
 					if(_cooldown < world.time)
 						new /obj/Particle/skull(usr.loc)
 						var/mob/living/carbon/enemy/hs/rustFollower/r = new(usr.loc, usr)
-						while(r.health > 0)
+						while(r)
 							_cooldown = world.time + 1
 							cdmsg = "The follower is still alive."
 							sleep(tick_lag_original)

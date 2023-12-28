@@ -22,17 +22,16 @@
 
 /datum/component/mood/proc/add_moodlet(datum/moodlet/_moodlet)
 	moodlets += new _moodlet
-	owner.SendSignal(COMSIG_MOODLET_ADDED, _moodlet)
+	SEND_SIGNAL(owner, COMSIG_MOODLET_ADDED, _moodlet)
 	update_mood_value()
 
 /datum/component/mood/proc/remove_moodlet(datum/moodlet/moodlet)
 	moodlets -= moodlet
-	owner.SendSignal(COMSIG_MOODLET_REMOVED, moodlet)
+	SEND_SIGNAL(owner, COMSIG_MOODLET_REMOVED, moodlet)
 	update_mood_value()
 
 /datum/component/mood/proc/update_mood_value()
 	mood_value = 0
-	world << "estoy update"
 	for(var/datum/moodlet/m in moodlets)
 		if(m.is_expired())
 			remove_moodlet(m)

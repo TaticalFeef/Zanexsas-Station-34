@@ -12,15 +12,16 @@
 #define GC_FILTER_QUEUE 2
 #define GC_CHECK_QUEUE 2//(1 SECONDS)
 #define GC_DEL_QUEUE 2
-//ZDEL É ZANEQUINHA DELETE
+//ZDEL ï¿½ ZANEQUINHA DELETE
 
 #define GC_QUEUED_FOR_QUEUING       -1
 #define GC_QUEUED_FOR_HARD_DEL      -2
-#define GC_CURRENTLY_BEING_QDELETED 1
+#define GC_CURRENTLY_BEING_ZDELETED 1
 
 //scuff
-#define ZDELING(X) (!X || X.zdeleted == GC_CURRENTLY_BEING_QDELETED)
+#define ZDELING(X) (!X || X.zdeleted == GC_CURRENTLY_BEING_ZDELETED)
 #define ZDELETED(X) (!X || X.zdeleted)
-#define ZDESTROYING(X) (!X || X.zdeleted == GC_CURRENTLY_BEING_QDELETED)
+#define ZDESTROYING(X) (!X || X.zdeleted == GC_CURRENTLY_BEING_ZDELETED)
 
 #define ZDEL_LIST(x) if(x) { for(var/y in x) { zDel(y) }}; if(x) { x.Cut(); x = null; }
+#define ZDEL_NULL(item) zDel(item); item = null
