@@ -27,10 +27,6 @@ datum/controller/game_controller
 							M.dir = 2
 							if(M.danc)
 								M.danc.Update_Y()
-		mobs_process()
-			for(var/mob/M in Mobs)
-				CHECK_TICK()
-				M.Life()
 mob
 	New()
 		..()

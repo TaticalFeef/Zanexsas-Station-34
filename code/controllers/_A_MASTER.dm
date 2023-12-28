@@ -98,6 +98,7 @@ datum/controller/game_controller
 	var/T = 0
 	var/datum/controller/subsystem/timers/timer_subsystem
 	var/datum/controller/subsystem/garbage/garbage_subsystem
+	var/datum/controller/subsystem/mobs/mobs_subsystem
 	proc
 		setup_objects()
 		process()
@@ -153,6 +154,8 @@ datum/controller/game_controller/proc/setup()
 	world << "Timer inicializado."
 	garbage_subsystem = new /datum/controller/subsystem/garbage()
 	world << "LixeiraDoZanequinhaTM inicializado."
+	mobs_subsystem = new /datum/controller/subsystem/mobs()
+	world << "Mobs cú inicializado"
 	var/total_init_time = (world.timeofday - RLstart_time) / 10
 	world << "Total initializations complete in [total_init_time] seconds!"
 
@@ -226,7 +229,6 @@ datum/controller/game_controller/
 		do_gravity_loop()
 		plrs = 0
 		for(var/client/i in clients)
-			i.InactivityLoop()
 			i.ProcessClient()
 			if(!istype(i.mob,/mob/dead))
 				if(i.mob.health > 0)
@@ -263,7 +265,7 @@ datum/controller/game_controller/
 
 		timer_subsystem.process_timers()
 		garbage_subsystem.process_garbage()
-		mobs_process()
+		mobs_subsystem.process_mobs()
 
 		T = T + 1
 		process_objects_done = 0
