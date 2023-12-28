@@ -1,5 +1,5 @@
 /obj/item/clothing/suit/hs
-	icon = 'hs_suits.dmi'
+//	icon = 'hs_suits.dmi'
 
 /obj/item/clothing/suit/hs/rust
 	name = "Forge Master's clothing"
@@ -9,5 +9,5 @@
 	heat_transfer_coefficient = 0.30
 	permeability_coefficient = 0.90
 	flags = FPRINT | TABLEPASS | ONESIZEFITSALL
-	icon_state = "item_forge_master"
+	icon_state = "forge_master"
 	item_state = "forge_master"

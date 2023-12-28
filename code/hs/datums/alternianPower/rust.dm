@@ -18,11 +18,10 @@ datum
 
 					if(_cooldown < world.time)
 						new /obj/Particle/skull(usr.loc)
-						var/mob/living/carbon/enemy/hs/rustFollower/r = new(src.loc,src)
+						var/mob/living/carbon/enemy/hs/rustFollower/r = new(usr.loc, usr)
 						while(r.health > 0)
 							_cooldown = world.time + 1
-							cdmsg = "The nigra is still alive."
-							usr.loc = r.loc
+							cdmsg = "The follower is still alive."
 							sleep(tick_lag_original)
 						_cooldown = world.time + rand(10,90)
 					else
