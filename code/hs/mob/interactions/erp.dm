@@ -55,12 +55,16 @@
 		var/obj/cleanable/bucket_juice/C = new(src.loc)
 		C.name = "DNA Juice"
 		src.tentacle.applyEffect(src, src.partner, C)
-		sleep(REST_PERIOD)
-		src.tired = 0
+		GET_COMPONENT_FROM(mood, /datum/component/mood, src)
+		if(mood)
+			mood.add_moodlet(/datum/moodlet/afterglow)
+		src.tired = 1
 		src.consent = FALSE
 		src.partner.consent = FALSE
 		src.partner.partner = null
 		src.partner = null
+		sleep(REST_PERIOD)
+		src.tired = 0
 
 /mob/living/carbon/human/proc/fug()
 	var/trpHTML = {"
