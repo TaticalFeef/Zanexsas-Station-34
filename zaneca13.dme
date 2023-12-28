@@ -10,6 +10,8 @@
 // BEGIN_FILE_DIR
 #define FILE_DIR .
 #define FILE_DIR "code"
+#define FILE_DIR "code/__LIBS"
+#define FILE_DIR "code/__LIBS/dmm_suite"
 #define FILE_DIR "code/hs"
 #define FILE_DIR "code/hs/mob"
 #define FILE_DIR "code/hs/mob/interactions"
@@ -78,6 +80,11 @@
 #include "code\__HELPERS\list.dm"
 #include "code\__HELPERS\type.dm"
 #include "code\__HELPERS\winshow.dm"
+#include "code\__LIBS\dmm_suite\_preprocessor_and_utilities.dm"
+#include "code\__LIBS\dmm_suite\api.dm"
+#include "code\__LIBS\dmm_suite\map_placeholders.dm"
+#include "code\__LIBS\dmm_suite\reader.dm"
+#include "code\__LIBS\dmm_suite\writer.dm"
 #include "code\_SYSTEMS\controllers\hooks-defs.dm"
 #include "code\_SYSTEMS\controllers\hooks.dm"
 #include "code\ATMOSPHERICS\atmospherics.dm"
@@ -119,6 +126,7 @@
 #include "code\datums\mixed.dm"
 #include "code\datums\modules.dm"
 #include "code\datums\organs.dm"
+#include "code\datums\ruin_generator.dm"
 #include "code\datums\shuttle_controller.dm"
 #include "code\datums\sun.dm"
 #include "code\datums\components\_component.dm"

@@ -1,0 +1,16 @@
+"a" = (/turf/unsimulated/asteroid_sand,/area)
+"b" = (/turf/unsimulated/grass,/area)
+"c" = (/turf/unsimulated/mineral,/area)
+
+(1,1,1) = {"
+aaaabccccc
+ccaaaacccc
+cccaaaccca
+cccaaaaaaa
+cccaaaaaab
+cbaaaaaaab
+caaabbbccc
+aaaabbbccc
+aabcccbccc
+aaccccbccc
+"}

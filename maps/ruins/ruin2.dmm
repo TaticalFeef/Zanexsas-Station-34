@@ -1,0 +1,22 @@
+"a" = (/obj/structure/forest/Tree1,/turf/unsimulated/grass,/area/alternianShip)
+"b" = (/turf/unsimulated/grass,/area/alternianShip)
+"c" = (/turf/simulated/wall,/area/alternianShip)
+"d" = (/obj/window_spawner,/turf/simulated/floor,/area/alternianShip)
+"e" = (/turf/simulated/floor,/area/alternianShip)
+"f" = (/obj/machinery/door/airlock/glass,/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/plating,/area/alternianShip)
+"g" = (/obj/machinery/light{dir = 8},/turf/simulated/floor,/area/alternianShip)
+"h" = (/obj/machinery/light{dir = 4},/turf/simulated/floor,/area/alternianShip)
+"i" = (/obj/machinery/light{dir = 1},/turf/unsimulated/grass,/area/alternianShip)
+
+(1,1,1) = {"
+bbbbbbbbbb
+bbbbbbbbab
+bccdddccbb
+acgeeehcbb
+bdeeeeedab
+bceeeeecbb
+bcceeeccab
+bcgeeehcbb
+bccfcdccbb
+abibbbibbb
+"}
