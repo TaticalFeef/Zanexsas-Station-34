@@ -18,10 +18,12 @@
 
 /mob/New()
 	. = ..()
-	var/datum/controller/subsystem/mobs/mob_ss = master_controller.mobs_subsystem
-	mob_ss.add_mob(src)
+	if(master_controller && master_controller.mobs_subsystem)
+		var/datum/controller/subsystem/mobs/mob_ss = master_controller.mobs_subsystem
+		mob_ss.add_mob(src)
 
 /mob/Destroyed()
-	var/datum/controller/subsystem/mobs/mob_ss = master_controller.mobs_subsystem
-	mob_ss.remove_mob(src)
+	if(master_controller && master_controller.mobs_subsystem)
+		var/datum/controller/subsystem/mobs/mob_ss = master_controller.mobs_subsystem
+		mob_ss.remove_mob(src)
 	. = ..()

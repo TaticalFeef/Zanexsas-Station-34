@@ -58,6 +58,8 @@
 		GET_COMPONENT_FROM(mood, /datum/component/mood, src)
 		if(mood)
 			mood.add_moodlet(/datum/moodlet/afterglow)
+		else
+			src << "\red You feel nothing at all..."
 		//hum
 		if(partner.gender == "male")
 			GET_COMPONENT_FROM(moodPartner, /datum/component/mood, src.partner)

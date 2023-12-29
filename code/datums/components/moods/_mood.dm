@@ -21,22 +21,23 @@
 		update_hud()
 
 /datum/component/mood/proc/add_moodlet(datum/moodlet/_moodlet)
-	moodlets += new _moodlet
+	moodlets += new _moodlet()
 	SEND_SIGNAL(owner, COMSIG_MOODLET_ADDED, _moodlet)
 	update_mood_value()
 
-/datum/component/mood/proc/remove_moodlet(datum/moodlet/moodlet)
-	moodlets -= moodlet
-	SEND_SIGNAL(owner, COMSIG_MOODLET_REMOVED, moodlet)
+/datum/component/mood/proc/remove_moodlet(var/datum/moodlet/_moodlet)
+	moodlets -= _moodlet
+	SEND_SIGNAL(owner, COMSIG_MOODLET_REMOVED, _moodlet)
 	update_mood_value()
 
 /datum/component/mood/proc/update_mood_value()
-	mood_value = 0
-	for(var/datum/moodlet/m in moodlets)
-		if(m.is_expired())
-			remove_moodlet(m)
-		else
-			mood_value += m.intensity
+	if(length(moodlets))
+		mood_value = 0
+		for(var/datum/moodlet/m in moodlets)
+			if(m.is_expired())
+				remove_moodlet(m)
+			else
+				mood_value += m.intensity
 	update_hud()
 
 /datum/component/mood/proc/update_hud()
@@ -45,12 +46,14 @@
 
 /datum/component/mood/proc/print_mood(mob/u)
 	var/list/mood_messages = list()
-	for(var/m in moodlets)
-		var/datum/moodlet/moodlet = m
-		mood_messages += moodlet.message
+	if(length(moodlets))
+		for(var/m in moodlets)
+			var/datum/moodlet/moodlet = m
+			mood_messages += moodlet.message
 	var/general_mood = get_general_mood_message()
 	u << "|||||||||||||||||||||||||||||||||||||"
-	u << jointext(mood_messages, "\n")
+	if(length(mood_messages))
+		u << jointext(mood_messages, "\n")
 	u << general_mood
 	u << "|||||||||||||||||||||||||||||||||||||"
 
