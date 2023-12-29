@@ -543,3 +543,12 @@ datum/proc/dd_SortValue()
 		if(i != input_list[input_list.len])
 			str += delimiter
 	return str
+
+//sim
+/proc/pick_n_pop(list/L)
+	if(L.len == 0)
+		return null
+	var/index = rand(1, L.len)
+	var/picked = L[index]
+	L.Cut(index, index + 1)
+	return picked

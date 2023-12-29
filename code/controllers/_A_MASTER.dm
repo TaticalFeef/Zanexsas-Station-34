@@ -150,6 +150,10 @@ datum/controller/game_controller/proc/setup()
 	spawn ticker.pregame()
 	initialize_special_objects()
 	create_sandbox_spawn_list()
+	world << "Gerando casinhas..."
+	var/datum/ruin_generator/casinhas = new("maps/ruins/")
+	casinhas.generate_ruins(1, 300, locate(/area/ruin))
+	world << "Casinhas geradas!"
 	timer_subsystem = new /datum/controller/subsystem/timers()
 	world << "Timer inicializado."
 	garbage_subsystem = new /datum/controller/subsystem/garbage()

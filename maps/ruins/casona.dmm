@@ -1,0 +1,60 @@
+"a" = (/turf/unsimulated/grass,/area/alternianShip)
+"b" = (/turf/simulated/wall,/area/alternianShip)
+"c" = (/obj/secure_closet/meat,/turf/simulated/floor{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/alternianShip)
+"d" = (/obj/item/kitchen/donut_box,/turf/simulated/floor{icon_state = "table"; TurfHeight = 4},/area/alternianShip)
+"e" = (/turf/simulated/floor,/area/alternianShip)
+"f" = (/obj/structure/forest/Tree1,/turf/unsimulated/grass,/area/alternianShip)
+"g" = (/obj/kitchenspike,/turf/simulated/floor{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/alternianShip)
+"h" = (/obj/machinery/light{dir = 8},/turf/simulated/floor,/area/alternianShip)
+"i" = (/obj/machinery/light{dir = 4},/turf/simulated/floor,/area/alternianShip)
+"j" = (/obj/window_spawner,/turf/simulated/floor,/area/alternianShip)
+"k" = (/obj/machinery/sleeper/spawner,/obj/machinery/light/small,/turf/simulated/floor,/area/start)
+"l" = (/obj/machinery/sleep_console,/turf/simulated/floor,/area/start)
+"m" = (/obj/machinery/door/airlock/glass,/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/plating,/area/alternianShip)
+"n" = (/obj/machinery/light{dir = 1},/turf/unsimulated/grass,/area/alternianShip)
+"o" = (/turf/simulated/floor{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/alternianShip)
+"p" = (/obj/machinery/atmospherics/unary/vent_pump{dir = 4},/turf/simulated/floor{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/alternianShip)
+"q" = (/obj/item/weapon/storage/mousetraps,/obj/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/simulated/floor{fully_cover = 1; icon_state = "table2"; TurfHeight = 4},/area/alternianShip)
+"r" = (/obj/item/weapon/storage/mousetraps,/turf/simulated/floor{fully_cover = 1; icon_state = "table2"; TurfHeight = 4},/area/alternianShip)
+"t" = (/obj/machinery/light/small,/turf/simulated/floor{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/alternianShip)
+"u" = (/obj/machinery/gibber,/turf/simulated/floor{tag = "icon-freezerfloor"; icon_state = "freezerfloor"},/area/alternianShip)
+"w" = (/obj/item/kitchen/donut_box,/turf/simulated/floor{fully_cover = 1; icon_state = "table2"; TurfHeight = 4},/area/alternianShip)
+"x" = (/turf/simulated/floor{icon_state = "white"},/area/alternianShip)
+"z" = (/obj/cable{icon_state = "2-8"; d1 = 2; d2 = 8},/turf/simulated/floor{icon_state = "white"},/area/alternianShip)
+"A" = (/obj/item/weapon/kitchen/rollingpin,/obj/item/weapon/storage/donkpocket_kit,/turf/simulated/floor{icon_state = "table"; TurfHeight = 4},/area/alternianShip)
+"B" = (/obj/machinery/microwave{pixel_y = 8},/obj/cable{icon_state = "0-2"; d2 = 2},/obj/machinery/light{dir = 1},/turf/simulated/floor{icon_state = "table"; TurfHeight = 4},/area/alternianShip)
+"C" = (/obj/machinery/microwave{pixel_y = 8},/turf/simulated/floor{icon_state = "table"; TurfHeight = 4},/area/alternianShip)
+"D" = (/obj/item/weapon/reagent_containers/food/snacks/pie,/turf/simulated/floor{fully_cover = 1; icon_state = "table2"; TurfHeight = 4},/area/alternianShip)
+"E" = (/obj/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/simulated/floor{icon_state = "white"},/area/alternianShip)
+"F" = (/obj/cable{icon_state = "4-8"; d1 = 4; d2 = 8},/obj/cable{icon_state = "2-4"; d1 = 2; d2 = 4},/turf/simulated/floor{icon_state = "white"},/area/alternianShip)
+"G" = (/obj/cable{icon_state = "4-8"; d1 = 4; d2 = 8},/obj/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/simulated/floor{icon_state = "white"},/area/alternianShip)
+"H" = (/obj/cable{icon_state = "4-8"; d1 = 4; d2 = 8},/turf/simulated/floor{icon_state = "white"},/area/alternianShip)
+"I" = (/obj/cable{icon_state = "2-8"; d1 = 2; d2 = 8},/turf/simulated/wall,/area/alternianShip)
+"K" = (/obj/cable{icon_state = "1-2"; d1 = 1; d2 = 2},/obj/cable{icon_state = "4-8"; d1 = 4; d2 = 8},/obj/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/obj/cable{icon_state = "2-8"; d1 = 2; d2 = 8},/obj/cable{icon_state = "2-4"; d1 = 2; d2 = 4},/obj/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/simulated/floor{icon_state = "white"},/area/alternianShip)
+"L" = (/obj/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/wall,/area/alternianShip)
+"M" = (/obj/item/weapon/reagent_containers/food/drinks/cola,/obj/cable{icon_state = "1-2"; d1 = 1; d2 = 2},/turf/simulated/floor{icon_state = "table"; TurfHeight = 4},/area/alternianShip)
+"P" = (/obj/secure_closet/fridge,/obj/machinery/camera{c_tag = "Kitchen"; dir = 1},/obj/machinery/light,/obj/machinery/power/apc{dir = 0; name = "Kitchen APC"; pixel_y = -24},/obj/cable{d2 = 8; icon_state = "0-8"},/obj/machinery/atmospherics/pipe/simple{dir = 4; icon_state = "intact-f"; initialize_directions = 12; layer = 3},/turf/simulated/floor{icon_state = "white"},/area/alternianShip)
+"S" = (/obj/cable{icon_state = "1-2"; d1 = 1; d2 = 2},/turf/simulated/wall,/area/alternianShip)
+
+(1,1,1) = {"
+abbbbbbbbbbbbbbbbbbb
+abheeeibhebcdgggbeib
+fbeeeeeeeeboopooIeeb
+abeeeeeeeebmbtouIeeb
+abeeeebbeewxbbbbLeeb
+fbheeeibheqzABCbeeib
+bbeeeeejeeDEFGHIeeeb
+beeeeeebeerEFHHIeeeb
+beeeeebbeeMHKPHLeeeb
+bheeeeibheSbbbmbeeib
+beeeeeeeeeeeeeeeeeeb
+beeeeeeeeeeeeeeeeeeb
+beeeeebbeeeeeeeeeeeb
+bheeeeibheeeeeeeeeib
+beeeekljeeeeeeeeeeeb
+bbeeeeebeeeeeeeeeeeb
+abeeeebbeeeeeeeeeeeb
+abheeeibheeeeeeeeeib
+abbmbjbbeeeeeeeeeeeb
+fanaaanbbbbbbbbbbbbb
+"}

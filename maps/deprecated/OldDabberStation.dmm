@@ -1051,7 +1051,7 @@
 "xh" = (/obj/machinery/atmospherics/pipe/simple/insulated{tag = "icon-intact (EAST)"; icon_state = "intact"; dir = 4},/obj/cable{icon_state = "1-2"; d1 = 1; d2 = 2},/turf/simulated/floor/plating,/area/hallway/primary/aft)
 "xi" = (/obj/machinery/atmospherics/pipe/simple/insulated{tag = "icon-intact (NORTHWEST)"; icon_state = "intact"; dir = 9},/turf/simulated/floor/plating,/area/hallway/primary/aft)
 "xk" = (/obj/machinery/light{tag = "icon-tube1 (WEST)"; icon_state = "tube1"; dir = 8},/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/secretplaceXD)
-"xl" = (/turf/unsimulated/space2,/area/derelict/ship)
+"xl" = (/turf/unsimulated/grass,/area/derelict/ship)
 "xm" = (/obj/machinery/light{tag = "icon-tube1 (EAST)"; icon_state = "tube1"; dir = 4},/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/secretplaceXD)
 "xn" = (/obj/item/weapon/wrench,/obj/item/clothing/gloves/yellow,/obj/machinery/light{tag = "icon-tube1 (WEST)"; icon_state = "tube1"; dir = 8},/turf/simulated/floor{icon_state = "table"; TurfHeight = 4},/area/secretplaceXD)
 "xo" = (/obj/cable{icon_state = "2-8"; d1 = 2; d2 = 8},/obj/cable{icon_state = "2-4"; d1 = 2; d2 = 4},/obj/cable{icon_state = "4-8"; d1 = 4; d2 = 8},/turf/simulated/floor,/area/hallway/secondary/entry)

@@ -15,3 +15,8 @@ proc/deg2rad(deg)
 			else
 				return /datum
 	return text2path(copytext(string_type, 1, last_slash))
+
+/proc/file2list(filename, seperator="\n", trim = TRUE)
+	if(trim)
+		return splittext(trim(file2text(filename)),seperator)
+	return splittext(file2text(filename),seperator)

@@ -13,12 +13,13 @@ mob
 		var/turf/TA = NewLoc //We need to check if we can get here actually.
 
 		var/canStandHere = 1
-		for(var/mob/i in TA.contents)
-			if(i != src)
-				//world << "heightZ >= i.heightZ = <font color='green'>[heightZ >= i.heightZ]</font> - heightZ <= i.heightZ+heightSize = <font color='green'>[heightZ <= i.heightZ+heightSize]</font>"
-				if(heightZ+heightSize > i.heightZ && heightZ < i.heightZ+i.heightSize)
-					//world << "<font color='red'>no you idiot dont stand on the [i]"
-					canStandHere = 0
+		if(TA)
+			for(var/mob/i in TA.contents)
+				if(i != src)
+					//world << "heightZ >= i.heightZ = <font color='green'>[heightZ >= i.heightZ]</font> - heightZ <= i.heightZ+heightSize = <font color='green'>[heightZ <= i.heightZ+heightSize]</font>"
+					if(heightZ+heightSize > i.heightZ && heightZ < i.heightZ+i.heightSize)
+						//world << "<font color='red'>no you idiot dont stand on the [i]"
+						canStandHere = 0
 		for(var/atom/i in NewLoc)
 			if(!istype(i,/mob))
 				if(i.density)

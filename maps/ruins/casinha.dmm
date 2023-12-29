@@ -7,16 +7,21 @@
 "g" = (/obj/machinery/light{dir = 8},/turf/simulated/floor,/area/alternianShip)
 "h" = (/obj/machinery/light{dir = 4},/turf/simulated/floor,/area/alternianShip)
 "i" = (/obj/machinery/light{dir = 1},/turf/unsimulated/grass,/area/alternianShip)
+"j" = (/obj/machinery/sleeper/spawner,/obj/machinery/light/small,/turf/simulated/floor,/area/start)
+"k" = (/obj/machinery/sleep_console,/turf/simulated/floor,/area/start)
+"l" = (/turf/simulated/floor{icon_state = "table"; TurfHeight = 4},/area/alternianShip)
+"m" = (/obj/structure/forest/deco1,/turf/unsimulated/grass,/area/alternianShip)
+"n" = (/obj/machinery/vending,/turf/simulated/floor,/area/alternianShip)
 
 (1,1,1) = {"
 bbbbbbbbbb
-bbbbbbbbab
-bccdddccbb
-acgeeehcbb
-bdeeeeedab
+bambbbabab
+bccdfdccbb
+acgleehcbb
+bfeeejkdab
 bceeeeecbb
-bcceeeccab
-bcgeeehcbb
+mcceenccab
+bcgeeehcmb
 bccfcdccbb
-abibbbibbb
+bbibbbiabb
 "}

@@ -73,6 +73,7 @@
 #include "code\__DEFINES\_ZDEL.dm"
 #include "code\__DEFINES\bitflag.dm"
 #include "code\__DEFINES\components.dm"
+#include "code\__DEFINES\map_gen.dm"
 #include "code\__DEFINES\math.dm"
 #include "code\__HELPERS\callback.dm"
 #include "code\__HELPERS\color.dm"

@@ -16,7 +16,10 @@ proc/zDel(datum/D, hint = ZDEL_HINT_QUEUE)
 		return
 	switch(hint)
 		if(ZDEL_HINT_QUEUE)
-			master_controller.garbage_subsystem.queue_for_deletion(D, GC_QUEUE_CHECK)
+			if(master_controller && master_controller.garbage_subsystem)
+				master_controller.garbage_subsystem.queue_for_deletion(D, GC_QUEUE_CHECK)
+			else
+				del D
 		if(ZDEL_HINT_LETMELIVE)
 			D.Destroyed()
 			return
@@ -25,7 +28,10 @@ proc/zDel(datum/D, hint = ZDEL_HINT_QUEUE)
 			return
 		if(ZDEL_HINT_HARDDEL)
 			// fila da morte
-			master_controller.garbage_subsystem.queue_for_deletion(D, GC_QUEUE_HARDDELETE)
+			if(master_controller && master_controller.garbage_subsystem)
+				master_controller.garbage_subsystem.queue_for_deletion(D, GC_QUEUE_HARDDELETE)
+			else
+				del D
 		if(ZDEL_HINT_HARDDEL_NOW)
 			//guilhotina
 			del D
