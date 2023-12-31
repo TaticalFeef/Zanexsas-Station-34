@@ -75,7 +75,7 @@ var/global/list/all_partners = list()
 #define FACTOR_PARTNER_DEATH    "external_factor_partner_death"
 #define FACTOR_OWNER_DEATH      "external_factor_owner_death"
 
-/datum/component/quadrant/proc/react_to_external_influence(external_factor, mob/living/carbon/human/offender)
+/datum/component/quadrant/proc/react_to_external_influence(external_factor, mob/living/offender)
 	switch(external_factor)
 		if(FACTOR_CHEATING)
 			handle_cheating(offender)
