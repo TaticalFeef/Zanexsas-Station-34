@@ -2,7 +2,6 @@
 	New()
 		..()
 		spawn()
-			all_partners += src
 			force = rand(1,10)
 			AddComponent(/datum/component/mood)
 			AddComponent(/datum/component/quadrant)

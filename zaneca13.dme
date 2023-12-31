@@ -137,6 +137,7 @@
 #include "code\datums\components\moods\_mood_let.dm"
 #include "code\datums\components\moods\erp.dm"
 #include "code\datums\components\moods\quadrant.dm"
+#include "code\datums\components\moods\relationships.dm"
 #include "code\datums\diseases\cold.dm"
 #include "code\datums\diseases\dna_spread.dm"
 #include "code\datums\diseases\fake_gbs.dm"
