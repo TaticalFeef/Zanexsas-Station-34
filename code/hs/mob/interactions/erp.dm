@@ -1,6 +1,3 @@
-#define MAX_BUCKET_METER 100
-#define REST_PERIOD 500
-
 /mob/living/carbon/human/proc/assignRandomTentacleType()
 	var/list/tentacle_types = typesof(/datum/tentacleType) - /datum/tentacleType
 	var/type = pick(tentacle_types)

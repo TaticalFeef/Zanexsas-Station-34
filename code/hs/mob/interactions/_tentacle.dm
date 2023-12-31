@@ -1,6 +1,3 @@
-#define TENTACLE_POWER_THRESHOLD 10
-#define TENTACLE_DAMAGE_MULTIPLIER 10
-
 /datum/tentacleType
 	var/name
 	var/description
